@@ -102,7 +102,6 @@
       object-fit:cover; border-radius:10px;
     }
 
-    /* Result image demo style */
     .result-img{
       width:100%;
       max-width:700px;
@@ -128,7 +127,6 @@
       text-align:center;
     }
 
-    /* Slider controls */
     .slider-row{display:flex;flex-direction:column;gap:8px;align-items:center;margin-top:10px}
     .slider-row input[type="range"]{width:100%;max-width:600px}
 
@@ -149,6 +147,7 @@
           <li><a href="#que-es">¿Qué es?</a></li>
           <li><a href="#ejercicios">Ejercicios</a></li>
           <li><a href="#resultados">Resultados</a></li>
+          <li><a href="#contacto">Contacto</a></li>
           <li><a href="#fuentes">Fuentes</a></li>
         </ul>
       </nav>
@@ -161,7 +160,7 @@
       <h2>¿Qué es el Método Bates?</h2>
       <p>
         El <strong>Método Bates</strong> propone ejercicios de relajación y movimiento ocular que buscan reducir la tensión visual.
-        Se busca utilizar como terapia complementaria en personas con errores refractivos, en este caso <strong>miopía</strong> e <strong>hipermetropía</strong>.
+        Se usa como terapia complementaria en personas con miopía e hipermetropía.
       </p>
     </section>
 
@@ -174,7 +173,7 @@
         <article class="card-ex">
           <h3>Palmeo</h3>
           <img src="https://uploads.onecompiler.io/43cd3qnf4/444v6a8xw/palmeo.gif.gif" alt="Palmeo" />
-          <p>Técnica donde cubres los ojos con las palmas para lograr oscuridad total y relajar profundamente los músculos oculares. Reduce tensión visual y mental, favoreciendo una visión más clara.</p>
+          <p>Técnica donde cubres los ojos con las palmas para lograr oscuridad total y relajar los músculos oculares.</p>
           <div class="controls">
             <input id="palTime" type="number" value="30" min="1">
             <button id="palStart" class="btn">Iniciar</button>
@@ -187,7 +186,7 @@
         <article class="card-ex">
           <h3>Asoleo</h3>
           <img src="https://uploads.onecompiler.io/43cd3qnf4/444v6a8xw/sunning_final.gif.gif" alt="Asoleo" />
-          <p>Consiste en recibir la luz del sol con los ojos cerrados para estimular suavemente el nervio óptico. Ayuda a relajar los ojos y disminuir la tensión.</p>
+          <p>Consiste en recibir la luz del sol con los ojos cerrados para estimular suavemente el nervio óptico.</p>
           <div class="controls">
             <input id="sunTime" type="number" value="8" min="1">
             <button id="sunStart" class="btn">Iniciar</button>
@@ -200,7 +199,7 @@
         <article class="card-ex">
           <h3>Oscilación del elefante</h3>
           <img src="https://uploads.onecompiler.io/43cd3qnf4/444v6a8xw/osc_elefante_comic_final.gif.gif" alt="Oscilación" />
-          <p>Balanceo suave del cuerpo que relaja la mirada y enseña a los ojos a moverse sin esfuerzo.</p>
+          <p>Balanceo suave que relaja la mirada y enseña a los ojos a moverse sin esfuerzo.</p>
           <div class="controls">
             <button id="elefPlay" class="btn">Reproducir animación</button>
           </div>
@@ -209,17 +208,46 @@
       </div>
     </section>
 
-    <!-- RESULTADOS ESPERADOS (con slider funcional) -->
     <section id="resultados" class="section">
       <h2>Resultados esperados</h2>
-      <p>Simulación didáctica: mueve la barra para ver la transición de más desenfoque a más nitidez (ilustrativo).</p>
+      <p>Mueve la barra para ver la transición de desenfoque a nitidez (simulación didáctica).</p>
 
-      <!-- imagen base + control (slider cambia blur y scale de la imagen) -->
-      <img id="resultImg" class="result-img" src="https://uploads.onecompiler.io/43cd3qnf4/444fy7enn/metodo-bates-mejorar-la-vision-erescambio.jpg" alt="Enfoque / Desenfoque">
+      <img id="resultImg" class="result-img"
+        src="https://uploads.onecompiler.io/43cd3qnf4/444fy7enn/metodo-bates-mejorar-la-vision-erescambio.jpg">
 
       <div class="slider-row">
-        <input id="effectRange" type="range" min="0" max="100" value="50" aria-label="Control efecto">
+        <input id="effectRange" type="range" min="0" max="100" value="50">
       </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN DE CONTACTO -->
+    <section id="contacto" class="section">
+      <h2>Contáctanos</h2>
+      <p>Si deseas más información sobre este proyecto, puedes escribirnos usando este formulario:</p>
+
+      <form action="https://formspree.io/f/xyzlrldb" method="POST" 
+        style="display:flex; flex-direction:column; gap:12px; max-width:500px;">
+
+        <label>
+          Nombre:
+          <input type="text" name="Pablo Castro" required
+          style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+        </label>
+
+        <label>
+          Correo electrónico:
+          <input type="email" name="paescaar188@gmail.com" required
+          style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+        </label>
+
+        <label>
+          Mensaje:
+          <textarea name="Para mayor información sobre todas la tecnicas del Dr William Bates por favor escribanos" rows="5" required
+          style="padding:10px; border-radius:8px; border:1px solid #ccc;"></textarea>
+        </label>
+
+        <button type="submit" class="btn" style="width:150px;">Enviar</button>
+      </form>
     </section>
 
     <section id="fuentes" class="section">
@@ -238,17 +266,14 @@
 
   </div>
 
-  <!-- Sonido para temporizadores -->
   <audio id="beep">
     <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
   </audio>
 
 <script>
-  // TIMERS
   let palTimer=null, sunTimer=null;
   const beep = document.getElementById('beep');
 
-  // Palmeo
   palStart.onclick=()=>{
     clearInterval(palTimer);
     let t = parseInt(palTime.value,10) || 30;
@@ -258,7 +283,6 @@
       if(t <= 0){
         clearInterval(palTimer);
         palDisplay.textContent = 'Listo.';
-        // play sound (try/catch to avoid autoplay block)
         try { beep.currentTime = 0; beep.play(); } catch(e) {}
       } else {
         palDisplay.textContent = 'Tiempo: ' + t + ' s';
@@ -267,7 +291,6 @@
   };
   palStop.onclick=()=>{ clearInterval(palTimer); palDisplay.textContent='Detenido.'; };
 
-  // Asoleo
   sunStart.onclick=()=>{
     clearInterval(sunTimer);
     let t = parseInt(sunTime.value,10) || 8;
@@ -285,7 +308,6 @@
   };
   sunStop.onclick=()=>{ clearInterval(sunTimer); sunDisplay.textContent='Detenido.'; };
 
-  // Oscilación
   elefPlay.onclick=()=>{
     elefPlay.closest('.card-ex').animate([
       {transform:'rotate(0deg)'},
@@ -295,13 +317,11 @@
     ],{duration:900});
   };
 
-  // SLIDER (desenfoque -> nitidez)
   const effectRange = document.getElementById('effectRange');
   const resultImg = document.getElementById('resultImg');
 
   function updateEffect(v){
-    // v: 0..100  -> blur 8px -> 0px and slight contrast/scale
-    const blur = (100 - v) / 12; // ~8px max
+    const blur = (100 - v) / 12;
     const contrast = 0.9 + (v/300);
     const scale = 1 + (v-50)/800;
     resultImg.style.filter = `blur(${blur}px) contrast(${contrast})`;
@@ -309,7 +329,6 @@
   }
 
   effectRange.addEventListener('input', ()=> updateEffect(effectRange.value));
-  // init
   updateEffect(effectRange.value);
 
 </script>
